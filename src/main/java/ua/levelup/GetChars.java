@@ -12,7 +12,7 @@ public class GetChars extends OptionHandler<CharContainer> {
         super(parser, option, setter);
     }
     @Override
-    public int parseArguments(Parameters params) throws CmdLineException {
+    public int parseArguments(Parameters params) throws CmdLineException, IllegalArgumentException {
             char ch1;
             char ch2;
 
@@ -23,21 +23,13 @@ public class GetChars extends OptionHandler<CharContainer> {
                 ch1 = parameter1.charAt(0);
             }
                 else {
-                try {
-                    throw new IncorrectLengthException("Incorrect length of par.1 -ch");
-                } catch (IncorrectLengthException e) {
-                    throw new RuntimeException(e);
-                }
+                    throw new IllegalArgumentException("Incorrect length of par.1 -ch");
             }
             if (parameter2.length()  == 1) {
                 ch2 = parameter2.charAt(0);
             }
             else {
-                try {
-                    throw new IncorrectLengthException("Incorrect length of par.2 -ch");
-                } catch (IncorrectLengthException e) {
-                    throw new RuntimeException(e);
-                }
+                    throw new IllegalArgumentException("Incorrect length of par.2 -ch");
             }
             try {
                 setter.addValue(new CharContainer(ch1, ch2));
@@ -49,12 +41,6 @@ public class GetChars extends OptionHandler<CharContainer> {
     @Override
     public String getDefaultMetaVariable() {
         return null;
-    }
-
-    private class IncorrectLengthException extends Exception{
-        private IncorrectLengthException(String msg){
-            super(msg);
-        }
     }
 }
 

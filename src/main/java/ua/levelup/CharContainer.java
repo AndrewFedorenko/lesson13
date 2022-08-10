@@ -6,7 +6,7 @@ public class CharContainer{
     public final char chTo;
 
     public CharContainer(char chFrom, char chTo){
-        super();
+        //super();
         this.chFrom = chFrom;
         this.chTo = chTo;
     }
